@@ -32,12 +32,14 @@ def main():
 
         # Первоначальная генерация плейлиста
         if not playlist.generate_playlist():
-            raise RuntimeError("Ошибка создания плейлиста")
+            logger.error("Ошибка создания плейлиста")
+            return
 
         # Запуск VLC
-        playlist_uri = f"file:///{config.playlist_path.resolve().as_posix()}"
+        playlist_uri = config.playlist_path.resolve().as_uri()  # Корректный URI формат
         if not vlc.start(playlist_uri):
-            raise RuntimeError("Не удалось запустить VLC")
+            logger.error("Не удалось запустить VLC")
+            return
 
         # Мониторинг файлов
         observer = Observer()
@@ -46,14 +48,27 @@ def main():
         observer.start()
 
         logger.info("Приложение запущено")
-        while True:
-            time.sleep(1)
+
+        # Основной цикл с проверкой состояния VLC
+        try:
+            while True:
+                if not vlc.is_running():
+                    logger.warning("VLC не запущен, перезапуск...")
+                    vlc.restart(playlist_uri)
+                time.sleep(5)
+        except KeyboardInterrupt:
+            logger.info("Получен сигнал завершения")
 
     except Exception as e:
         logger.error(f"Fatal error: {str(e)}")
     finally:
-        observer.stop()
-        observer.join()
+        # Корректное завершение работы
+        try:
+            observer.stop()
+            observer.join(timeout=5)
+        except Exception as e:
+            logger.error(f"Ошибка при остановке Observer: {e}")
+
         vlc.stop()
         logger.info("Приложение завершило работу")
 
