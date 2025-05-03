@@ -12,6 +12,8 @@ class VLCController:
         try:
             cmd = [
                 str(self.config.get_vlc_path()),
+                "--sout", "#standard{access=http,mux=ts,dst=:8080}",  # HTTP-сервер
+                "--sout-keep",  # Поддержка постоянного соединения
                 "--repeat",
                 "--playlist-autostart",
                 "--no-qt-error-dialogs",
