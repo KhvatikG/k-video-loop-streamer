@@ -21,8 +21,8 @@ wheels = [
 ]
 
 [[package]]
-name = "kult-video-loop"
-version = "0.1.0"
+name = "k-video-loop-streamer"
+version = "1.0.0"
 source = { virtual = "." }
 dependencies = [
     { name = "loguru" },
