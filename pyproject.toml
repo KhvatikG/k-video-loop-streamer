@@ -1,7 +1,7 @@
 [project]
-name = "kult-video-loop"
-version = "0.1.0"
-description = "Add your description here"
+name = "k-video-loop-streamer"
+version = "1.0.0"
+description = "Loop Video Streamer"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
