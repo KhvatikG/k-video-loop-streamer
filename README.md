@@ -68,4 +68,4 @@ VideoLoop/
 
 ✉️ **Поддержка**: khvatik.igor@gmail.com
 💻 **Репозиторий**: github.com/KhvatikG/k-video-loop-streamer
-📅 **Версия**: 1.0.0
+📅 **Версия**: 1.0.1

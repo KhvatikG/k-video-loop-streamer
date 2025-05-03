@@ -35,7 +35,7 @@ class VLCController:
                 str(self.config.get_vlc_path()),
                 "--sout", f"#standard{{access=http,mux=ts,dst=:{self.http_port}}}",
                 "--sout-keep",
-                "--repeat",
+                "--loop",
                 "--playlist-autostart",
                 "--no-qt-error-dialogs",
                 "--intf", "dummy",

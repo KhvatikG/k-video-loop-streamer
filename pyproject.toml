@@ -1,6 +1,6 @@
 [project]
 name = "k-video-loop-streamer"
-version = "1.0.0"
+version = "1.0.1"
 description = "Loop Video Streamer"
 readme = "README.md"
 requires-python = ">=3.13"
