@@ -19,6 +19,7 @@ def configure_logging(config):
         diagnose=True
     )
 
+
 def main():
     config = AppConfig()
     config.setup_dirs()
@@ -55,6 +56,7 @@ def main():
         observer.join()
         vlc.stop()
         logger.info("Приложение завершило работу")
+
 
 if __name__ == "__main__":
     main()
